@@ -46,6 +46,18 @@ Player::Player(int _height,int _width,string _name)
     gameAreaWidth = _width;
     this->name=_name;
     double randWay = rand()%4;
+    if (randWay == 0) {
+        Client::changeDirection("j");
+    }
+    if (randWay == 1) {
+        Client::changeDirection("b");
+    }
+    if (randWay == 2) {
+        Client::changeDirection("l");
+    }
+    if (randWay == 3) {
+        Client::changeDirection("f");
+    }
     std::cout<<randWay<<std::endl;
     if (randWay < 1)
     {

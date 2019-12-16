@@ -6,6 +6,7 @@
 using namespace std;
 
 int sock = 0;
+char *dir = "t";
 
 void Client::buildConnect() {
     sock = 0;
@@ -31,6 +32,14 @@ void Client::buildConnect() {
 
 void Client::messageSender(char *message) {
     send(sock, message, strlen(message), 0);
+}
+
+void Client::changeDirection(char *_dir) {
+    dir = _dir;
+}
+
+void Client::sendDirection() {
+    send(sock, dir, strlen(dir), 0);
 }
 
 string Client::messageReceiver() {

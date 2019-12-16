@@ -48,6 +48,7 @@ int main(int argc,char* args[])
 
                 Game::getInstance()->update();
                 Game::getInstance()->render();
+                Client::sendDirection();
                 SDL_Delay(300);
 
         }

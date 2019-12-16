@@ -21,6 +21,8 @@ class Client
         // virtual ~Client();
         static void buildConnect();
         static void messageSender(char *message);
+        static void changeDirection(char *dir);
+        static void sendDirection();
         static std::string messageReceiver();
         // static std::string messageReceive;
         // static void messageReceiver();

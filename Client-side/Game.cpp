@@ -321,6 +321,7 @@ void Game::update()
                     {
                     this->ThePlayer->dx = -Player::velocity;
                     this->ThePlayer->dy= 0;
+                    Client::changeDirection("l");
                     }
                     break;
                 case SDLK_RIGHT:
@@ -328,6 +329,7 @@ void Game::update()
                     {
                     this->ThePlayer->dx= Player::velocity;
                     this->ThePlayer->dy=0;
+                    Client::changeDirection("r");
                     }
                     break;
                 case SDLK_UP:
@@ -335,6 +337,7 @@ void Game::update()
                     {
                     this->ThePlayer->dx= 0;
                     this->ThePlayer->dy=-Player::velocity;
+                    Client::changeDirection("u");
                     }
                     break;
                 case SDLK_DOWN:
@@ -342,6 +345,7 @@ void Game::update()
                     {
                     this->ThePlayer->dx= 0;
                     this->ThePlayer->dy=Player::velocity;
+                    Client::changeDirection("d");
                     }
                     break;
 
@@ -349,8 +353,6 @@ void Game::update()
                     break;
                 }
             }
-
-
         }
 //        for(auto t:this->Players)
 //    {

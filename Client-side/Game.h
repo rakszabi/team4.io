@@ -3,6 +3,7 @@
 #include "Tile.h"
 #include "Player.h"
 #include "GameStateMachine.h"
+#include "Client.h"
 class Game
 {
     public:

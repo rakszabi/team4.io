@@ -77,7 +77,12 @@ int main() {
     sending("Welcome", player1);
     sending("Welcome", player2);
 
-    usleep(1000000);
+    usleep(100000);
+
+    while(true) {
+        cout << receiving(player1) << endl;
+        cout << receiving(player2) << endl;
+    }
 
     return 0;
 
