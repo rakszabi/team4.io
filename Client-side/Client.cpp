@@ -6,7 +6,7 @@
 using namespace std;
 
 int sock = 0;
-char *dir = "t";
+char *dir;
 
 void Client::buildConnect() {
     sock = 0;

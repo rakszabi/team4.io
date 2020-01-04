@@ -209,7 +209,7 @@ void Game::render()
         }
             }
     }
-    
+
     //e render Tiles
 
     //b render Player
@@ -368,28 +368,28 @@ void Game::update()
 
         if(Game::getInstance()->otherPlayersDir == "u") {
             if(this->OtherPlayer->dy != Player::velocity) {
-                 cout << "fel" << endl;
+                // cout << "fel" << endl;
                 this->OtherPlayer->dx = 0;
                 this->OtherPlayer->dy = -Player::velocity;
             }
         }
         if(Game::getInstance()->otherPlayersDir == "d") {
             if(this->OtherPlayer->dy != -Player::velocity) {
-                cout << "le" << endl;
+                // cout << "le" << endl;
                 this->OtherPlayer->dx = 0;
                 this->OtherPlayer->dy = Player::velocity;
             }
         }
         if(Game::getInstance()->otherPlayersDir == "l") {
             if(this->OtherPlayer->dx != Player::velocity) {
-                cout << "balra" << endl;
+                // cout << "balra" << endl;
                 this->OtherPlayer->dx = -Player::velocity;
                 this->OtherPlayer->dy = 0;
             }
         }
         if(Game::getInstance()->otherPlayersDir == "r") {
             if(this->OtherPlayer->dx != -Player::velocity) {
-                cout << "jobbra" << endl;
+                // cout << "jobbra" << endl;
                 this->OtherPlayer->dx = Player::velocity;
                 this->OtherPlayer->dy = 0;
             }
