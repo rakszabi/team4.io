@@ -11,6 +11,9 @@ public:
     Player(int _height,int _width,string Name);
     virtual ~Player();
 
+    int newX;
+    int newY;
+
     SDL_Rect rectangle;//Player's x,y height and width
     int gameAreaHeight;
     int gameAreaWidth;

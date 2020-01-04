@@ -1,5 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
+#include <string>
 #include "Tile.h"
 #include "Player.h"
 #include "GameStateMachine.h"
@@ -12,6 +13,8 @@ class Game
         void update();
         //static variables
         const static int gameScale;
+
+        string otherPlayersDir;
 
         bool isRunning();
         void End();
@@ -44,6 +47,7 @@ class Game
         SDL_Renderer* renderer;
         vector<Player*> Players;
         Player* ThePlayer;
+        Player* OtherPlayer;
         static int posX;
         static int posY;
 };

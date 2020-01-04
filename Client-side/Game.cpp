@@ -106,6 +106,7 @@ void Game::initBoard()
 {
     std::cout<<"Board is initializing..."<<std::endl;
     this->ThePlayer = new Player(areaHeight, areaWidth,random_id(30));
+    this->OtherPlayer = new Player(areaHeight, areaWidth, random_id(30));
 
     //render tiles for the first time && get starting zone around  player...
     for(int i = 0; i < this->LEVEL_HEIGHT/Game::gameScale; i++)
@@ -122,7 +123,7 @@ void Game::initBoard()
 //    {
 //        startingArea(k);
 //    }
-startingArea(this->ThePlayer);
+//startingArea(this->ThePlayer);
 
     std::cout<<"Board is successfully initialized!"<<std::endl;
 }
@@ -208,10 +209,13 @@ void Game::render()
         }
             }
     }
+    
     //e render Tiles
 
     //b render Player
+    //this->OtherPlayer->render(this->renderer);
     this->ThePlayer->render(this->renderer);
+    //this->OtherPlayer->render(this->renderer);
     //e render Player
 
 
@@ -359,12 +363,45 @@ void Game::update()
                     break;
                 }
             }
+
         }
+
+        if(Game::getInstance()->otherPlayersDir == "u") {
+            if(this->OtherPlayer->dy != Player::velocity) {
+                 cout << "fel" << endl;
+                this->OtherPlayer->dx = 0;
+                this->OtherPlayer->dy = -Player::velocity;
+            }
+        }
+        if(Game::getInstance()->otherPlayersDir == "d") {
+            if(this->OtherPlayer->dy != -Player::velocity) {
+                cout << "le" << endl;
+                this->OtherPlayer->dx = 0;
+                this->OtherPlayer->dy = Player::velocity;
+            }
+        }
+        if(Game::getInstance()->otherPlayersDir == "l") {
+            if(this->OtherPlayer->dx != Player::velocity) {
+                cout << "balra" << endl;
+                this->OtherPlayer->dx = -Player::velocity;
+                this->OtherPlayer->dy = 0;
+            }
+        }
+        if(Game::getInstance()->otherPlayersDir == "r") {
+            if(this->OtherPlayer->dx != -Player::velocity) {
+                cout << "jobbra" << endl;
+                this->OtherPlayer->dx = Player::velocity;
+                this->OtherPlayer->dy = 0;
+            }
+        }
+
 //        for(auto t:this->Players)
 //    {
 //        t->update();
 //    }
+this->OtherPlayer->update();
 this->ThePlayer->update();
+//this->OtherPlayer->update();
 }
 SDL_Renderer* Game::getRenderer()
 {
@@ -399,6 +436,7 @@ void Game::connectToServer() {
     cout << "Main position X: " << mainPosX << endl;
     cout << "Main position Y: " << mainPosY << endl;
     ThePlayer->changePosition(mainPosX, mainPosY);
+    startingArea(ThePlayer);
 
     ss.clear();
     ss << Client::messageReceiver();
@@ -408,4 +446,7 @@ void Game::connectToServer() {
     ss >> otherPosY;
     cout << "Other player position X: " << otherPosX << endl;
     cout << "Other player position Y: " << otherPosY << endl;
+    OtherPlayer->changePosition(otherPosX, otherPosY);
+    
+    startingArea(OtherPlayer);
 }

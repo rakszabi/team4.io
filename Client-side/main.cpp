@@ -48,6 +48,9 @@ int main(int argc,char* args[])
                 Game::getInstance()->update();
                 Game::getInstance()->render();
                 Client::sendDirection();
+                Game::getInstance()->otherPlayersDir = Client::messageReceiver();
+                // cout << Client::messageReceiver() << endl;
+                cout << Game::getInstance()->otherPlayersDir << endl;
                 SDL_Delay(300);
 
         }

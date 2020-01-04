@@ -53,16 +53,16 @@ Player::Player(int _height,int _width,string _name)
     this->name=_name;
     double randWay = rand()%4;
     if (randWay == 0) {
-        Client::changeDirection("j");
+        Client::changeDirection("r");
     }
     if (randWay == 1) {
-        Client::changeDirection("b");
-    }
-    if (randWay == 2) {
         Client::changeDirection("l");
     }
+    if (randWay == 2) {
+        Client::changeDirection("d");
+    }
     if (randWay == 3) {
-        Client::changeDirection("f");
+        Client::changeDirection("u");
     }
     std::cout<<randWay<<std::endl;
     if (randWay < 1)
