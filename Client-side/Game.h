@@ -17,7 +17,7 @@ class Game
         void End();
         static bool inMenu;
         static bool isConnectToServer;
-        static void connectToServer();
+        void connectToServer();
         static Tile* getTile(int x,int y);
         static void fillContested(Player* player,int gameAreaWidth,int gameAreaHeight);
         static vector<vector<Tile*>>gameArea;
@@ -44,6 +44,8 @@ class Game
         SDL_Renderer* renderer;
         vector<Player*> Players;
         Player* ThePlayer;
+        static int posX;
+        static int posY;
 };
 
 #endif // GAME_H

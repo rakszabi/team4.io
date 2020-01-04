@@ -14,6 +14,12 @@ int RoundNum(int num, int step)
     else
         return ((num - (step / 2)) / step) * step;
 }
+
+void Player::changePosition(int x, int y) {
+    Player::rectangle.x = x;
+    Player::rectangle.y = y;
+}
+
 Player::Player(int _height,int _width,string _name)
 {
     srand (time(NULL));

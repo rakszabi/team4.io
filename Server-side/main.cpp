@@ -7,10 +7,14 @@
 
 #include <iostream>
 #include <time.h>
+#include <math.h>
 
 #define PORT 8080
 
 using namespace std;
+
+const int LEVEL_WIDTH = 2000;
+const int LEVEL_HEIGHT = 2000;
 
 void sending(char *message, int player) {
     send(player, message, strlen(message), 0);
@@ -22,9 +26,19 @@ string receiving(int player) {
     return buffer;
 }
 
+const int gameScale = 10;
+
+int RoundNum(int num, int step) {
+    if (num >= 0)
+        return ((num + (step / 2)) / step) * step;
+    else
+        return ((num - (step / 2)) / step) * step;
+}
+
 int main() {
     int server_fd, new_socket, valread;
     int player1, player2;
+    string player1X, player1Y, player2X, player2Y;
     struct sockaddr_in address;
     int opt = 1;
     int addrlen = sizeof(address);
@@ -79,9 +93,46 @@ int main() {
 
     usleep(100000);
 
+    // Player1 kezdo pozi
+    srand (time(NULL));
+    player1X = std::to_string(RoundNum(round((int)(rand() % LEVEL_WIDTH)),gameScale));
+    //srand (time(NULL));
+    player1Y = std::to_string(RoundNum(round((int)(rand() % LEVEL_HEIGHT)),gameScale));
+    cout << "Player1 position X: " << player1X << endl;
+    cout << "Player1 position Y: " << player1Y << endl;
+
+    // Player2 kezdo pozi
+    //srand (time(NULL));
+    player2X = std::to_string(RoundNum(round((int)(rand() % LEVEL_WIDTH)),gameScale));
+    //srand (time(NULL));
+    player2Y = std::to_string(RoundNum(round((int)(rand() % LEVEL_HEIGHT)),gameScale));
+    cout << "Player2 position X: " << player2X << endl;
+    cout << "Player2 position Y: " << player2Y << endl;
+
+    // sending positions
+    char* char_type = new char[player1X.length()];
+    strcpy(char_type, player1X.c_str());
+    sending(char_type, player1);
+
+    char_type = new char[player2X.length()];
+    strcpy(char_type, player2X.c_str());
+    sending(char_type, player2);
+
+    usleep(3000);
+
+    char_type = new char[player1Y.length()];
+    strcpy(char_type, player1Y.c_str());
+    sending(char_type, player1);
+
+    char_type = new char[player2Y.length()];
+    strcpy(char_type, player2Y.c_str());
+    sending(char_type, player2);
+
     while(true) {
         cout << receiving(player1) << endl;
         cout << receiving(player2) << endl;
+        sending("null", player1);
+        sending("null", player2);
     }
 
     return 0;

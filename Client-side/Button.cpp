@@ -44,7 +44,7 @@ void Button::handle_events()
                     Client::messageSender("begin");
                     cout << "Message has been sent to the server..." << endl;
                     if(Client::messageReceiver() == "Welcome") {
-                        Game::connectToServer();
+                        Game::getInstance()->connectToServer();
                     }
                 }
             }

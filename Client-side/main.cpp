@@ -9,7 +9,6 @@ const int HEIGHT = 480;
 int main(int argc,char* args[])
 {
 
-
     SDL_Init(SDL_INIT_EVERYTHING);
 
     SDL_Window *window = SDL_CreateWindow("Team4io",

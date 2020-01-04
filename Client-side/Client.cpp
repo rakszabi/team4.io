@@ -28,6 +28,7 @@ void Client::buildConnect() {
     if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
         cout << "Connection failed" << endl;
     }
+
 }
 
 void Client::messageSender(char *message) {

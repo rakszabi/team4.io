@@ -44,6 +44,7 @@ public:
         return !(this->getName() == other->getName());
     }
     static int velocity;
+    void changePosition(int x, int y);
 private:
     vector<Tile*> tilesC;
     vector<Tile*> tilesO;

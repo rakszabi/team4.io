@@ -5,6 +5,10 @@
 #include <algorithm>
 #include <time.h>
 #include <map>
+#include <sstream>
+
+stringstream ss;
+
 //b static variables
 vector<vector<Tile*>>Game::gameArea;
 SDL_Event Game::e;
@@ -32,7 +36,8 @@ std::string random_id( size_t length )
 
 Game::Game(int areaHeight,int areaWidth,string playerName,SDL_Window *window)
 {
-
+    // posX = 100;
+    // posY = 100;
     renderer =  SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED);
     this->areaHeight = areaHeight;
     this->areaWidth = areaWidth;
@@ -304,6 +309,7 @@ void Game::fillContested(Player* player,int gameAreaWidth,int gameAreaHeight) {
 //Main game logic
 void Game::update()
 {
+    // this->ThePlayer->changePosition(this->posX, this->posY);
 
         while( SDL_PollEvent(&Game::e)!=0)
         {
@@ -383,4 +389,13 @@ int Game::getLevelHeight()
 void Game::connectToServer() {
     Game::isConnectToServer = true;
     cout << "Connected" << endl;
+    static int posX, posY;
+    ss << Client::messageReceiver();
+    ss >> posX;
+    ss.clear();
+    ss << Client::messageReceiver();
+    ss >> posY;
+    cout << "Position X: " << posX << endl;
+    cout << "Position Y: " << posY << endl;
+    ThePlayer->changePosition(posX, posY);
 }
