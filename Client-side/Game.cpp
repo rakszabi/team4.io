@@ -389,13 +389,23 @@ int Game::getLevelHeight()
 void Game::connectToServer() {
     Game::isConnectToServer = true;
     cout << "Connected" << endl;
-    static int posX, posY;
+    static int mainPosX, mainPosY, otherPosX, otherPosY;
+
     ss << Client::messageReceiver();
-    ss >> posX;
+    ss >> mainPosX;
     ss.clear();
     ss << Client::messageReceiver();
-    ss >> posY;
-    cout << "Position X: " << posX << endl;
-    cout << "Position Y: " << posY << endl;
-    ThePlayer->changePosition(posX, posY);
+    ss >> mainPosY;
+    cout << "Main position X: " << mainPosX << endl;
+    cout << "Main position Y: " << mainPosY << endl;
+    ThePlayer->changePosition(mainPosX, mainPosY);
+
+    ss.clear();
+    ss << Client::messageReceiver();
+    ss >> otherPosX;
+    ss.clear();
+    ss << Client::messageReceiver();
+    ss >> otherPosY;
+    cout << "Other player position X: " << otherPosX << endl;
+    cout << "Other player position Y: " << otherPosY << endl;
 }

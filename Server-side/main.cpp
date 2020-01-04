@@ -109,14 +109,12 @@ int main() {
     cout << "Player2 position X: " << player2X << endl;
     cout << "Player2 position Y: " << player2Y << endl;
 
-    // sending positions
+    usleep(3000);
+
+    // sending main positions
     char* char_type = new char[player1X.length()];
     strcpy(char_type, player1X.c_str());
     sending(char_type, player1);
-
-    char_type = new char[player2X.length()];
-    strcpy(char_type, player2X.c_str());
-    sending(char_type, player2);
 
     usleep(3000);
 
@@ -124,8 +122,41 @@ int main() {
     strcpy(char_type, player1Y.c_str());
     sending(char_type, player1);
 
+    usleep(3000);
+
+    char_type = new char[player2X.length()];
+    strcpy(char_type, player2X.c_str());
+    sending(char_type, player2);
+
+    usleep(3000);
+
     char_type = new char[player2Y.length()];
     strcpy(char_type, player2Y.c_str());
+    sending(char_type, player2);
+
+    usleep(3000);
+
+    // sending other player positions
+    char_type = new char[player2X.length()];
+    strcpy(char_type, player2X.c_str());
+    sending(char_type, player1);
+
+    usleep(3000);
+
+    char_type = new char[player2Y.length()];
+    strcpy(char_type, player2Y.c_str());
+    sending(char_type, player1);
+
+    usleep(3000);
+
+    char_type = new char[player1X.length()];
+    strcpy(char_type, player1X.c_str());
+    sending(char_type, player2);
+
+    usleep(3000);
+
+    char_type = new char[player1Y.length()];
+    strcpy(char_type, player1Y.c_str());
     sending(char_type, player2);
 
     while(true) {
