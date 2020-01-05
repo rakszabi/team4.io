@@ -42,6 +42,7 @@ Player::Player(int _height,int _width,string _name)
     {
         this->rectangle.y -= Game::gameScale;
     }
+    srand (time(NULL));
     this->tileColor.r = (int)(rand() % (255));
     this->tileColor.g = (int)(rand() % (255));
     this->tileColor.b = (int)(rand() % (255));
@@ -51,7 +52,7 @@ Player::Player(int _height,int _width,string _name)
     gameAreaHeight = _height;
     gameAreaWidth = _width;
     this->name=_name;
-    double randWay = rand()%4;
+    randWay = rand()%4;
     if (randWay == 0) {
         Client::changeDirection("r");
     }

@@ -22,6 +22,7 @@ public:
     string name;
     int getX();
     int getY();
+    int randWay;
     SDL_Color getColor();
     void move();
     void die();

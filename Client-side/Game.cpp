@@ -132,10 +132,10 @@ void Game::startingArea(Player* player)
 {
     int x = player->getX();
     int y = player->getY();
-
-    for(int i = x-Game::gameScale; i <= x+Game::gameScale; i+=Game::gameScale)
+    cout << "X: " << x << endl << "Y: " << y << endl;
+    for(int i = x-Game::gameScale*2; i <= x+Game::gameScale*2; i+=Game::gameScale)
     {
-        for(int j = y-Game::gameScale; j <= y+Game::gameScale; j+=Game::gameScale)
+        for(int j = y-Game::gameScale*2; j <= y+Game::gameScale*2; j+=Game::gameScale)
         {
             if((j>0&&j<this->LEVEL_HEIGHT)&&(i>0&&i<this->LEVEL_WIDTH))
             {
@@ -366,35 +366,34 @@ void Game::update()
 
         }
 
-        if(Game::getInstance()->otherPlayersDir == "u") {
-            if(this->OtherPlayer->dy != Player::velocity) {
-                // cout << "fel" << endl;
-                this->OtherPlayer->dx = 0;
-                this->OtherPlayer->dy = -Player::velocity;
-            }
-        }
-        if(Game::getInstance()->otherPlayersDir == "d") {
-            if(this->OtherPlayer->dy != -Player::velocity) {
-                // cout << "le" << endl;
-                this->OtherPlayer->dx = 0;
-                this->OtherPlayer->dy = Player::velocity;
-            }
-        }
         if(Game::getInstance()->otherPlayersDir == "l") {
-            if(this->OtherPlayer->dx != Player::velocity) {
+            //if(this->OtherPlayer->dx != Player::velocity) {
                 // cout << "balra" << endl;
                 this->OtherPlayer->dx = -Player::velocity;
                 this->OtherPlayer->dy = 0;
-            }
+            //}
         }
         if(Game::getInstance()->otherPlayersDir == "r") {
-            if(this->OtherPlayer->dx != -Player::velocity) {
+            //if(this->OtherPlayer->dx != -Player::velocity) {
                 // cout << "jobbra" << endl;
                 this->OtherPlayer->dx = Player::velocity;
                 this->OtherPlayer->dy = 0;
-            }
+           // }
         }
-
+        if(Game::getInstance()->otherPlayersDir == "u") {
+            //if(this->OtherPlayer->dy != Player::velocity) {
+                // cout << "fel" << endl;
+                this->OtherPlayer->dx = 0;
+                this->OtherPlayer->dy = -Player::velocity;
+            //}
+        }
+        if(Game::getInstance()->otherPlayersDir == "d") {
+            //if(this->OtherPlayer->dy != -Player::velocity) {
+                // cout << "le" << endl;
+                this->OtherPlayer->dx = 0;
+                this->OtherPlayer->dy = Player::velocity;
+           // }
+        }
 //        for(auto t:this->Players)
 //    {
 //        t->update();
@@ -428,6 +427,7 @@ void Game::connectToServer() {
     cout << "Connected" << endl;
     static int mainPosX, mainPosY, otherPosX, otherPosY;
 
+    ss.clear();
     ss << Client::messageReceiver();
     ss >> mainPosX;
     ss.clear();
@@ -446,7 +446,38 @@ void Game::connectToServer() {
     ss >> otherPosY;
     cout << "Other player position X: " << otherPosX << endl;
     cout << "Other player position Y: " << otherPosY << endl;
+
+
+    // if(Game::getInstance()->otherPlayersDir == "l") {
+    //     otherPosX += Game::gameScale;
+    // }
+    // if(Game::getInstance()->otherPlayersDir == "r") {
+    //     otherPosX -= Game::gameScale;
+    // }
+    // if(Game::getInstance()->otherPlayersDir == "u") {
+    //     otherPosY += Game::gameScale;
+    // }
+    // if(Game::getInstance()->otherPlayersDir == "d") {
+    //     otherPosY -= Game::gameScale;
+    // }
+
+    // if(ThePlayer->randWay == 1) {
+    //     cout << "bal" << endl;
+    //     otherPosX += Game::gameScale;
+    // }
+    // if(ThePlayer->randWay == 0) {
+    //     cout << "jobb" << endl;
+    //     otherPosX -= Game::gameScale;
+    // }
+    // if(ThePlayer->randWay == 3) {
+    //     cout << "fel" << endl;
+    //     otherPosY += Game::gameScale;
+    // }
+    // if(ThePlayer->randWay == 2) {
+    //     cout << "le" << endl;
+    //     otherPosY -= Game::gameScale;
+    // }
+
     OtherPlayer->changePosition(otherPosX, otherPosY);
-    
     startingArea(OtherPlayer);
 }
