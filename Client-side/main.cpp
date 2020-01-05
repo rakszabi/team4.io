@@ -47,6 +47,9 @@ int main(int argc,char* args[])
 
                 Client::sendDirection();
                 Game::getInstance()->otherPlayersDir = Client::messageReceiver();
+                if(Game::getInstance()->otherPlayersDir == "w") {
+                    Game::getInstance()->End();
+                }
                 SDL_Delay(300);
                 Game::getInstance()->update();
                 Game::getInstance()->render();

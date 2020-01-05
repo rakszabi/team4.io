@@ -1,6 +1,8 @@
 #include "Button.h"
 #include "Game.h"
 
+#include "SDL2/SDL_image.h"
+
 using namespace std;
 
 Button::Button( int x, int y, int w, int h )
@@ -58,5 +60,14 @@ void Button::show()
     SDL_SetRenderDrawColor(Game::getInstance()->getRenderer(),100,100,100,255);
     SDL_RenderFillRect(Game::getInstance()->getRenderer(),&this->box);
     SDL_RenderPresent(Game::getInstance()->getRenderer());
+    // SDL_Surface* surface = IMG_Load("play.png");
+    // texture =  SDL_CreateTextureFromSurface(Game::getInstance()->getRenderer(),surface);
+    // SDL_FreeSurface(surface);
+    // int w,h;
+    // SDL_QueryTexture(texture,NULL,NULL,&w,&h);
+    // box.w = w;
+    // box.h = h;
+	// SDL_RenderCopy(Game::getInstance()->getRenderer(),texture,NULL,&box);
+
 }
 

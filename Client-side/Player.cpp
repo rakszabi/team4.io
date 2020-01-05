@@ -116,22 +116,22 @@ void Player::move()
 
 void Player::die()
 {
-    std::cout<<"Player named: "<<this->name<<" died. The owned area was: "<<this->getPercentO()<<"%"<<std::endl;
-    isAlive = false;
+//     std::cout<<"Player named: "<<this->name<<" died. The owned area was: "<<this->getPercentO()<<"%"<<std::endl;
+//     isAlive = false;
 
-    Game::getInstance()->End();
-    for(auto oTC :tilesO)
-    {
-        oTC->setOwner(nullptr);
-    }
+//     Game::getInstance()->End();
+//     for(auto oTC :tilesO)
+//     {
+//         oTC->setOwner(nullptr);
+//     }
 
-    for(auto cTC:tilesC)
-    {
-        cTC->setContestedO(nullptr);
-    }
-    this->tilesO.clear();
-    this->tilesC.clear();
-    this->currentTile = nullptr;
+//     for(auto cTC:tilesC)
+//     {
+//         cTC->setContestedO(nullptr);
+//     }
+//     this->tilesO.clear();
+//     this->tilesC.clear();
+//     this->currentTile = nullptr;
 }
 
 
