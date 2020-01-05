@@ -132,7 +132,7 @@ void Game::startingArea(Player* player)
 {
     int x = player->getX();
     int y = player->getY();
-    cout << "X: " << x << endl << "Y: " << y << endl;
+    // cout << "X: " << x << endl << "Y: " << y << endl;
     for(int i = x-Game::gameScale*2; i <= x+Game::gameScale*2; i+=Game::gameScale)
     {
         for(int j = y-Game::gameScale*2; j <= y+Game::gameScale*2; j+=Game::gameScale)
@@ -331,7 +331,7 @@ void Game::update()
                     {
                     this->ThePlayer->dx = -Player::velocity;
                     this->ThePlayer->dy= 0;
-                    Client::changeDirection("l");
+                    Client::changeDirection((char*) "l");
                     }
                     break;
                 case SDLK_RIGHT:
@@ -339,7 +339,7 @@ void Game::update()
                     {
                     this->ThePlayer->dx= Player::velocity;
                     this->ThePlayer->dy=0;
-                    Client::changeDirection("r");
+                    Client::changeDirection((char*) "r");
                     }
                     break;
                 case SDLK_UP:
@@ -347,7 +347,7 @@ void Game::update()
                     {
                     this->ThePlayer->dx= 0;
                     this->ThePlayer->dy=-Player::velocity;
-                    Client::changeDirection("u");
+                    Client::changeDirection((char*) "u");
                     }
                     break;
                 case SDLK_DOWN:
@@ -355,7 +355,7 @@ void Game::update()
                     {
                     this->ThePlayer->dx= 0;
                     this->ThePlayer->dy=Player::velocity;
-                    Client::changeDirection("d");
+                    Client::changeDirection((char*) "d");
                     }
                     break;
 
@@ -437,6 +437,7 @@ void Game::connectToServer() {
     cout << "Main position Y: " << mainPosY << endl;
     ThePlayer->changePosition(mainPosX, mainPosY);
     startingArea(ThePlayer);
+    ThePlayer->tileColor = {0,255,0};
 
     ss.clear();
     ss << Client::messageReceiver();
@@ -480,4 +481,5 @@ void Game::connectToServer() {
 
     OtherPlayer->changePosition(otherPosX, otherPosY);
     startingArea(OtherPlayer);
+    OtherPlayer->tileColor = {0,0,255};
 }

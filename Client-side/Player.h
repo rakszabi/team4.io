@@ -49,11 +49,11 @@ public:
     }
     static int velocity;
     void changePosition(int x, int y);
+    SDL_Color tileColor;
 private:
     vector<Tile*> tilesC;
     vector<Tile*> tilesO;
     SDL_Color color={255,0,0};
-    SDL_Color tileColor;
     Tile* currentTile;
     bool isAlive = true;
 };

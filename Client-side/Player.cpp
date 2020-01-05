@@ -43,9 +43,9 @@ Player::Player(int _height,int _width,string _name)
         this->rectangle.y -= Game::gameScale;
     }
     srand (time(NULL));
-    this->tileColor.r = (int)(rand() % (255));
-    this->tileColor.g = (int)(rand() % (255));
-    this->tileColor.b = (int)(rand() % (255));
+    // this->tileColor.r = (int)(rand() % (255));
+    // this->tileColor.g = (int)(rand() % (255));
+    // this->tileColor.b = (int)(rand() % (255));
     //Player's width and height
     this->rectangle.h=Game::gameScale;
     this->rectangle.w=Game::gameScale;
@@ -54,18 +54,18 @@ Player::Player(int _height,int _width,string _name)
     this->name=_name;
     randWay = rand()%4;
     if (randWay == 0) {
-        Client::changeDirection("r");
+        Client::changeDirection((char*) "r");
     }
     if (randWay == 1) {
-        Client::changeDirection("l");
+        Client::changeDirection((char*) "l");
     }
     if (randWay == 2) {
-        Client::changeDirection("d");
+        Client::changeDirection((char*) "d");
     }
     if (randWay == 3) {
-        Client::changeDirection("u");
+        Client::changeDirection((char*) "u");
     }
-    std::cout<<randWay<<std::endl;
+    // std::cout<<randWay<<std::endl;
     if (randWay < 1)
     {
         this->dx = Player::velocity;

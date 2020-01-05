@@ -176,8 +176,8 @@ int main() {
         // VÁLTOZATOTT
         player1_dir = receiving(player1);
         player2_dir = receiving(player2);
-        cout << player1_dir << endl;
-        cout << player2_dir << endl;
+        // cout << player1_dir << endl;
+        // cout << player2_dir << endl;
 
         char_type = new char[player2_dir.length()];
         strcpy(char_type, player2_dir.c_str());

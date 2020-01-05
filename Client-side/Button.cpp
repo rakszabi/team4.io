@@ -41,7 +41,7 @@ void Button::handle_events()
                 if(!Game::isConnectToServer) {
                     // TO DO message sending to server
                     Client::buildConnect();
-                    Client::messageSender("begin");
+                    Client::messageSender((char*) "begin");
                     cout << "Message has been sent to the server..." << endl;
                     if(Client::messageReceiver() == "Welcome") {
                         Game::getInstance()->connectToServer();

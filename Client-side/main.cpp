@@ -47,11 +47,11 @@ int main(int argc,char* args[])
 
                 Client::sendDirection();
                 Game::getInstance()->otherPlayersDir = Client::messageReceiver();
+                SDL_Delay(300);
                 Game::getInstance()->update();
                 Game::getInstance()->render();
                 // cout << Client::messageReceiver() << endl;
-                cout << Game::getInstance()->otherPlayersDir << endl;
-                SDL_Delay(2000);
+                // cout << Game::getInstance()->otherPlayersDir << endl;
 
         }
     }
