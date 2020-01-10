@@ -275,7 +275,7 @@ int main() {
                 winP1 = true;
             else if(posMatrix[player2X_int2][player2Y_int2] == 1.2)
                 winP2 = true;
-            else if(posMatrix[player2X_int2][player2Y_int2] == 1.1)
+            else if(posMatrix[player2X_int2][player2Y_int2] == 2.1)
                 checkArea(2.1);
             else
                 posMatrix[player2X_int2][player2Y_int2] = 2.2;
@@ -286,7 +286,7 @@ int main() {
                 winP1 = true;
             else if(posMatrix[player2X_int2][player2Y_int2] == 1.2)
                 winP2 = true;
-            else if(posMatrix[player2X_int2][player2Y_int2] == 1.1)
+            else if(posMatrix[player2X_int2][player2Y_int2] == 2.1)
                 checkArea(2.1);
             else
                 posMatrix[player2X_int2][player2Y_int2] = 2.2;
@@ -297,7 +297,7 @@ int main() {
                 winP1 = true;
             else if(posMatrix[player2X_int2][player2Y_int2] == 1.2)
                 winP2 = true;
-            else if(posMatrix[player2X_int2][player2Y_int2] == 1.1)
+            else if(posMatrix[player2X_int2][player2Y_int2] == 2.1)
                 checkArea(2.1);
             else
                 posMatrix[player2X_int2][player2Y_int2] = 2.2;
@@ -308,7 +308,7 @@ int main() {
                 winP1 = true;
             else if(posMatrix[player2X_int2][player2Y_int2] == 1.2)
                 winP2 = true;
-            else if(posMatrix[player2X_int2][player2Y_int2] == 1.1)
+            else if(posMatrix[player2X_int2][player2Y_int2] == 2.1)
                 checkArea(2.1);
             else
                 posMatrix[player2X_int2][player2Y_int2] = 2.2;
