@@ -47,14 +47,21 @@ int main(int argc,char* args[])
 
                 Client::sendDirection();
                 Game::getInstance()->otherPlayersDir = Client::messageReceiver();
-                if(Game::getInstance()->otherPlayersDir == "w") {
+                if(Game::getInstance()->otherPlayersDir == "win") {
+                    cout << "You are the winner" << endl;
+                    cout << "Your score is: " << Client::messageReceiver() << endl;
+                    cout << "Other player score is: " << Client::messageReceiver() << endl;
+                    Game::getInstance()->End();
+                }
+                if(Game::getInstance()->otherPlayersDir == "loose") {
+                    cout << "You lost this game" << endl;
+                    cout << "Your score is: " << Client::messageReceiver() << endl;
+                    cout << "Other player score is: " << Client::messageReceiver() << endl;
                     Game::getInstance()->End();
                 }
                 SDL_Delay(300);
                 Game::getInstance()->update();
                 Game::getInstance()->render();
-                // cout << Client::messageReceiver() << endl;
-                // cout << Game::getInstance()->otherPlayersDir << endl;
 
         }
     }
