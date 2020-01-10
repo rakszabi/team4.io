@@ -23,23 +23,22 @@ void checkArea(double player){
     double isInArea = false;
     for(int i=0; i<LEVEL_HEIGHT/10; i++){
         for(int j=0; j<LEVEL_WIDTH/10; j++){
-            // if (posMatrix[i][j] == player && !isInArea || posMatrix[i][j] == player+0.1 && !isInArea) {
-            //     isInArea = true;
-            // } else if (posMatrix[i][j] == player && isInArea || posMatrix[i][j] == player+0.1 && isInArea) {
-            //     isInArea = false;
-            // }
+            if (posMatrix[i][j] == player+0.1) {
+                posMatrix[i][j] = player;
+            }
+        }
+    }
 
-            // if(isInArea) {
-            //     posMatrix[i][j] = player;
-            // }
-
-            if (posMatrix[i][j] == player && !isInArea || posMatrix[i][j] == player+0.1 && !isInArea) {
+    for(int i = 0; i < LEVEL_HEIGHT/10; i++) {
+        for (int j = 0; j < LEVEL_WIDTH/10; j++) {
+            if (posMatrix[i][j] == player && !isInArea) {
                 isInArea = true;
-            } else if (posMatrix[i][j] == 0.0 && isInArea && posMatrix[i][j-1] == player || posMatrix[i][j] == 0.0 && isInArea && posMatrix[i][j-1] == player+0.1) {
+            }
+            if (posMatrix[i][j] == player && isInArea) {
                 isInArea = false;
             }
 
-            if(isInArea) {
+            if (isInArea) {
                 posMatrix[i][j] = player;
             }
 
