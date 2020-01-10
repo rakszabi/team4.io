@@ -215,6 +215,12 @@ void sending(char *message, int player) {
     send(player, message, strlen(message), 0);
 }
 
+void sending(string message, int player) {
+    char* char_type = new char[message.length()];
+    strcpy(char_type, message.c_str());
+    sending(char_type, player);
+}
+
 string receiving(int player) {
     char buffer[1024] = {0};
     int valread = read(player, buffer, 1024);
@@ -298,11 +304,11 @@ int main() {
 
     // Player1 kezdo pozi
     srand (time(NULL));
-    int player1X_int = 100;
+    int player1X_int = 1000;
     player1X = std::to_string(player1X_int);
     int player1X_int2 = player1X_int/10;      // le kell osztani tízzel mert a mátrix 200x200-as
     //srand (time(NULL));
-    int player1Y_int = 100;
+    int player1Y_int = 1000;
     player1Y = std::to_string(player1Y_int);
     int player1Y_int2 = player1Y_int/10;
     for(int i=player1X_int2-1; i<player1X_int2+1; i++){
@@ -315,11 +321,11 @@ int main() {
 
     // Player2 kezdo pozi
     //srand (time(NULL));
-    int player2X_int = 300;             //RoundNum(round((int)(rand() % (LEVEL_WIDTH-300))),gameScale);
+    int player2X_int = 1300;             //RoundNum(round((int)(rand() % (LEVEL_WIDTH-300))),gameScale);
     player2X = std::to_string(player2X_int);
     int player2X_int2 = player2X_int/10;
     //srand (time(NULL));
-    int player2Y_int = 300;             //RoundNum(round((int)(rand() % (LEVEL_HEIGHT-300))),gameScale);
+    int player2Y_int = 1300;             //RoundNum(round((int)(rand() % (LEVEL_HEIGHT-300))),gameScale);
     player2Y = std::to_string(player2Y_int);
     int player2Y_int2 = player2Y_int/10;
     for(int i=player2X_int2-1; i<player2X_int2+1; i++){
@@ -330,55 +336,31 @@ int main() {
     cout << "Player2 position X: " << player2X << endl;
     cout << "Player2 position Y: " << player2Y << endl;
 
-    usleep(3000);
-
     // sending main positions
-    char* char_type = new char[player1X.length()];
-    strcpy(char_type, player1X.c_str());
-    sending(char_type, player1);
+    usleep(3000);
+    sending(player1X,player1);
 
     usleep(3000);
-
-    char_type = new char[player1Y.length()];
-    strcpy(char_type, player1Y.c_str());
-    sending(char_type, player1);
+    sending(player1Y, player1);
 
     usleep(3000);
-
-    char_type = new char[player2X.length()];
-    strcpy(char_type, player2X.c_str());
-    sending(char_type, player2);
+    sending(player2X, player2);
 
     usleep(3000);
-
-    char_type = new char[player2Y.length()];
-    strcpy(char_type, player2Y.c_str());
-    sending(char_type, player2);
-
-    usleep(3000);
+    sending(player2Y, player2);
 
     // sending other player positions
-    char_type = new char[player2X.length()];
-    strcpy(char_type, player2X.c_str());
-    sending(char_type, player1);
+    usleep(3000);
+    sending(player2X, player1);
 
     usleep(3000);
-
-    char_type = new char[player2Y.length()];
-    strcpy(char_type, player2Y.c_str());
-    sending(char_type, player1);
+    sending(player2Y, player1);
 
     usleep(3000);
-
-    char_type = new char[player1X.length()];
-    strcpy(char_type, player1X.c_str());
-    sending(char_type, player2);
+    sending(player1X, player2);
 
     usleep(3000);
-
-    char_type = new char[player1Y.length()];
-    strcpy(char_type, player1Y.c_str());
-    sending(char_type, player2);
+    sending(player1Y, player2);
 
     while(true) {
         player1_dir = receiving(player1);
@@ -388,7 +370,7 @@ int main() {
 
         if(player1_dir == "u"){
             player1X_int2 -= 1;
-            if(player1X_int2 == 0)
+            if(player1X_int2 == 0 || posMatrix[player1X_int2][player1Y_int2] == 1.2)
                 winP2 = true;
             else if(posMatrix[player1X_int2][player1Y_int2] == 2.2)
                 winP1 = true;
@@ -397,7 +379,7 @@ int main() {
         }
         else if(player1_dir == "d"){
             player1X_int2 += 1;
-            if(player1X_int2 == 200)
+            if(player1X_int2 == 200 || posMatrix[player1X_int2][player1Y_int2] == 1.2)
                 winP2 = true;
             else if(posMatrix[player1X_int2][player1Y_int2] == 2.2)
                 winP1 = true;
@@ -406,7 +388,7 @@ int main() {
         }
         else if(player1_dir == "l"){
             player1Y_int2 -= 1;
-            if(player1Y_int2 == 0)
+            if(player1Y_int2 == 0 || posMatrix[player1X_int2][player1Y_int2] == 1.2)
                 winP2 = true;
             else if(posMatrix[player1X_int2][player1Y_int2] == 2.2)
                 winP1 = true;
@@ -415,7 +397,7 @@ int main() {
         }
         else if(player1_dir == "r"){
             player1Y_int2 += 1;
-            if(player1Y_int2 == 200)
+            if(player1Y_int2 == 200 || posMatrix[player1X_int2][player1Y_int2] == 1.2)
                 winP2 = true;
             else if(posMatrix[player1X_int2][player1Y_int2] == 2.2)
                 winP1 = true;
@@ -426,7 +408,7 @@ int main() {
 
         if(player2_dir == "u"){
             player2X_int2 -= 1;
-            if(player2X_int2 == 0)
+            if(player2X_int2 == 0 || posMatrix[player2X_int2][player2Y_int2] == 2.2)
                 winP1 = true;
             else if(posMatrix[player2X_int2][player2Y_int2] == 1.2)
                 winP2 = true;
@@ -435,7 +417,7 @@ int main() {
         }
         else if(player2_dir == "d"){
             player2X_int2 += 1;
-            if(player2X_int2 == 200)
+            if(player2X_int2 == 200 || posMatrix[player2X_int2][player2Y_int2] == 2.2)
                 winP1 = true;
             else if(posMatrix[player2X_int2][player2Y_int2] == 1.2)
                 winP2 = true;
@@ -444,7 +426,7 @@ int main() {
         }
         else if(player2_dir == "l"){
             player2Y_int2 -= 1;
-            if(player2Y_int2 == 0)
+            if(player2Y_int2 == 0 || posMatrix[player2X_int2][player2Y_int2] == 2.2)
                 winP1 = true;
             else if(posMatrix[player2X_int2][player2Y_int2] == 1.2)
                 winP2 = true;
@@ -453,7 +435,7 @@ int main() {
         }
         else if(player2_dir == "r"){
             player2Y_int2 += 1;
-            if(player2Y_int2 == 200)
+            if(player2Y_int2 == 200 || posMatrix[player2X_int2][player2Y_int2] == 2.2)
                 winP1 = true;
             else if(posMatrix[player2X_int2][player2Y_int2] == 1.2)
                 winP2 = true;
@@ -464,22 +446,18 @@ int main() {
 
         if (winP1)
         {
-            cout << "player1 won";
+            cout << "player1 won" << endl;
             return 0;
         }
         else if (winP2)
         {
-            cout << "player2 won";
+            cout << "player2 won" << endl;
             return 0;
         }
 
-        char_type = new char[player2_dir.length()];
-        strcpy(char_type, player2_dir.c_str());
-        sending(char_type, player1);
+        sending(player2_dir, player1);
 
-        char_type = new char[player1_dir.length()];
-        strcpy(char_type, player1_dir.c_str());
-        sending(char_type, player2);
+        sending(player1_dir, player2);
     }
 
     return 0;
