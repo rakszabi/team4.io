@@ -20,16 +20,18 @@ const int LEVEL_HEIGHT = 2000;
 double posMatrix[LEVEL_WIDTH/10][LEVEL_HEIGHT/10];
 
 void checkArea(double player){
+
     double isInArea = false;
-    for(int i=0; i<LEVEL_HEIGHT/10; i++){
-        for(int j=0; j<LEVEL_WIDTH/10; j++){
+
+    for (int i=0; i<LEVEL_HEIGHT/10; i++){
+        for (int j=0; j<LEVEL_WIDTH/10; j++){
             if (posMatrix[i][j] == player+0.1) {
                 posMatrix[i][j] = player;
             }
         }
     }
 
-    for(int i = 0; i < LEVEL_HEIGHT/10; i++) {
+    for (int i = 0; i < LEVEL_HEIGHT/10; i++) {
         for (int j = 0; j < LEVEL_WIDTH/10; j++) {
             if (posMatrix[i][j] == player && !isInArea) {
                 isInArea = true;
@@ -168,8 +170,8 @@ int main() {
     player1Y = std::to_string(player1Y_int);
     int player1Y_int2 = player1Y_int/10;
 
-    for(int i=player1X_int2-2; i<player1X_int2+2; i++){
-        for(int j=player1Y_int2-2; j<player1Y_int2+2; j++){
+    for(int i=player1X_int2-2; i<player1X_int2+3; i++){
+        for(int j=player1Y_int2-2; j<player1Y_int2+3; j++){
             posMatrix[i][j] = 1.1;
         }
     }
@@ -186,8 +188,8 @@ int main() {
     player2Y = std::to_string(player2Y_int);
     int player2Y_int2 = player2Y_int/10;
 
-    for(int i=player2X_int2-2; i<player2X_int2+2; i++){
-        for(int j=player2Y_int2-2; j<player2Y_int2+2; j++){
+    for(int i=player2X_int2-2; i<player2X_int2+3; i++){
+        for(int j=player2Y_int2-2; j<player2Y_int2+3; j++){
             posMatrix[i][j] = 2.1;
         }
     }
@@ -325,17 +327,22 @@ int main() {
         {
             cout << "player1 won" << endl;
             sending("win", player1);
+            usleep(3000);
             sending("loose", player2);
             sending(scoreCalc(1.1), player1);
+            usleep(3000);
             sending(scoreCalc(2.1), player1);
+            usleep(3000);
             return 0;
         }
         else if (winP2)
         {
             cout << "player2 won" << endl;
             sending("win", player2);
+            usleep(3000);
             sending("loose", player1);
             sending(scoreCalc(2.1), player2);
+            usleep(3000);
             sending(scoreCalc(1.1), player2);
             return 0;
         }

@@ -436,8 +436,8 @@ void Game::connectToServer() {
     cout << "Main position X: " << mainPosX << endl;
     cout << "Main position Y: " << mainPosY << endl;
     ThePlayer->changePosition(mainPosX, mainPosY);
-    startingArea(ThePlayer);
     ThePlayer->tileColor = {0,255,0};
+    startingArea(ThePlayer);
 
     ss.clear();
     ss << Client::messageReceiver();
@@ -448,38 +448,7 @@ void Game::connectToServer() {
     cout << "Other player position X: " << otherPosX << endl;
     cout << "Other player position Y: " << otherPosY << endl;
 
-
-    // if(Game::getInstance()->otherPlayersDir == "l") {
-    //     otherPosX += Game::gameScale;
-    // }
-    // if(Game::getInstance()->otherPlayersDir == "r") {
-    //     otherPosX -= Game::gameScale;
-    // }
-    // if(Game::getInstance()->otherPlayersDir == "u") {
-    //     otherPosY += Game::gameScale;
-    // }
-    // if(Game::getInstance()->otherPlayersDir == "d") {
-    //     otherPosY -= Game::gameScale;
-    // }
-
-    // if(ThePlayer->randWay == 1) {
-    //     cout << "bal" << endl;
-    //     otherPosX += Game::gameScale;
-    // }
-    // if(ThePlayer->randWay == 0) {
-    //     cout << "jobb" << endl;
-    //     otherPosX -= Game::gameScale;
-    // }
-    // if(ThePlayer->randWay == 3) {
-    //     cout << "fel" << endl;
-    //     otherPosY += Game::gameScale;
-    // }
-    // if(ThePlayer->randWay == 2) {
-    //     cout << "le" << endl;
-    //     otherPosY -= Game::gameScale;
-    // }
-
     OtherPlayer->changePosition(otherPosX, otherPosY);
-    startingArea(OtherPlayer);
     OtherPlayer->tileColor = {0,0,255};
+    startingArea(OtherPlayer);
 }
