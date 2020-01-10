@@ -47,6 +47,7 @@ int main(int argc,char* args[])
 
                 Client::sendDirection();
                 Game::getInstance()->otherPlayersDir = Client::messageReceiver();
+
                 if(Game::getInstance()->otherPlayersDir == "win") {
                     cout << "You are the winner" << endl;
                     cout << "Your score is: " << Client::messageReceiver() << endl;
@@ -59,6 +60,7 @@ int main(int argc,char* args[])
                     cout << "Other player score is: " << Client::messageReceiver() << endl;
                     Game::getInstance()->End();
                 }
+
                 SDL_Delay(300);
                 Game::getInstance()->update();
                 Game::getInstance()->render();

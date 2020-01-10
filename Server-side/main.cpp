@@ -23,15 +23,19 @@ void checkArea(double player){
     double isInArea = false;
     for(int i=0; i<LEVEL_HEIGHT/10; i++){
         for(int j=0; j<LEVEL_WIDTH/10; j++){
-            // if(isInArea)
-            //     posMatrix[i][j] = player;
-            // if(posMatrix[i][j] == (player+0.1) || posMatrix[i][j] == (player)){
-            //     posMatrix[i][j] = player;
-            //     isInArea = !isInArea;
+            // if (posMatrix[i][j] == player && !isInArea || posMatrix[i][j] == player+0.1 && !isInArea) {
+            //     isInArea = true;
+            // } else if (posMatrix[i][j] == player && isInArea || posMatrix[i][j] == player+0.1 && isInArea) {
+            //     isInArea = false;
             // }
+
+            // if(isInArea) {
+            //     posMatrix[i][j] = player;
+            // }
+
             if (posMatrix[i][j] == player && !isInArea || posMatrix[i][j] == player+0.1 && !isInArea) {
                 isInArea = true;
-            } else if (posMatrix[i][j] == player && isInArea || posMatrix[i][j] == player+0.1 && isInArea) {
+            } else if (posMatrix[i][j] == 0.0 && isInArea && posMatrix[i][j-1] == player || posMatrix[i][j] == 0.0 && isInArea && posMatrix[i][j-1] == player+0.1) {
                 isInArea = false;
             }
 
@@ -314,6 +318,9 @@ int main() {
                 posMatrix[player2X_int2][player2Y_int2] = 2.2;
         }
         cout << "tailPos player2: " << player2X_int2 << ":" << player2Y_int2 << endl;
+
+        cout << "player1 score: " << scoreCalc(1.1) << endl;
+        cout << "player2 score: " << scoreCalc(2.1) << endl;
 
         if (winP1)
         {
